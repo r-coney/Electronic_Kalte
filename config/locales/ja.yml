@@ -1,4 +1,9 @@
 ja:
+  enums:
+    customer:
+      gender:
+        man: '男性'
+        woman: '女性'
   activerecord:
     attributes:
       user:
@@ -25,6 +30,17 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      customer:
+        name: 氏名
+        address: 住所
+        birthday: 生年月日
+        phone: 電話番号
+        created_at: 登録日時
+        updated_at: 更新日時
+        gender: 性別
+      customer/gender:
+        man: 男性
+        woman: 女性
     models:
       user: ユーザー
   devise:

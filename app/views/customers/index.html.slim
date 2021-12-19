@@ -1,3 +1,15 @@
 h1 顧客一覧
 
 = link_to '顧客登録', new_customer_path
+
+table 
+  thead 
+    tr= Customer.human_attribute_name(:name)
+    tr= Customer.human_attribute_name(:id)
+    tr= Customer.human_attribute_name(:phone)
+  tbody 
+    - @customers.each do |customer|
+      tr 
+        td= link_to customer.name, customer
+        td= customer.id 
+        td= customer.phone
