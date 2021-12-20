@@ -11,29 +11,21 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"
   body
-  nav class="navbar navbar-expand-lg navbar-dark bg-dark"
-    div class="container-fluid">
-      <a class="navbar-brand" href="#">Electoronic Kalte</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">顧客登録</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">顧客一覧</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">顧客検索</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">ログアウト</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    header
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .container-fluid
+          = link_to 'Electoronic Kalte', root_path, class: 'navbar-brand'
+          button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+            span.navbar-toggler-icon
+          .collapse.navbar-collapse.justify-content-end#navbarNav
+            ul.navbar-nav
+              li.nav-item
+                =link_to '顧客登録', new_customer_path, class: 'nav-link'
+              li.nav-item
+                =link_to '顧客一覧', customers_path, class: 'nav-link'
+              li.nav-item
+                =link_to 'ログアウト', '#', class: 'nav-link'
     .container
       = yield
+
+

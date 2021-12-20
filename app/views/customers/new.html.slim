@@ -12,11 +12,6 @@ h1 顧客登録
 
   = f.label :phone
   = f.text_field :phone, id: 'customer_phone'
-  
-  / = f.label :gender, :man
-  / = f.radio_button  :gender, :man
-  / = f.label :gender, :wowan
-  / = f.radio_button :gender, :woman
 
   = f.radio_button :gender, :man
   = f.label :gender, "男性", { value: :man } 
