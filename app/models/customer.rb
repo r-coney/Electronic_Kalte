@@ -4,9 +4,9 @@ class Customer < ApplicationRecord
     man: 0,
     woman: 1
   }
-   validates :name, presence: true
+   validates :name, presence: true, length: { maximum: 50 }
    validates :birthday, presence: true
-   validates :address, presence: true
-   validates :phone, presence: true
+   validates :address, presence: true, length: { maximum: 50 }
+   validates :phone, presence: true, length: { maximum: 15 }
    validates :gender, presence: true
 end
