@@ -31,6 +31,7 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
       customer:
+        id: ID
         name: 氏名
         address: 住所
         birthday: 生年月日

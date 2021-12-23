@@ -1,6 +1,32 @@
-h1 顧客詳細
+h1.page-title 顧客詳細
 
 = link_to '顧客一覧', customers_path
 
-= @customer.name
-= @customer.gender_i18n
+table.table
+  tr 
+    th scope='col' = Customer.human_attribute_name(:id) 
+    td = @customer.id
+  tr
+    th scope='col' = Customer.human_attribute_name(:name)
+    td = @customer.name
+  tr 
+    th scope='col' = Customer.human_attribute_name(:phone)
+    td = @customer.phone
+  tr
+    th scope='col' = Customer.human_attribute_name(:birthday)
+    td = @customer.birthday
+  tr 
+    th scope='col' = Customer.human_attribute_name(:gender)
+    td = @customer.gender_i18n
+
+= link_to '編集',  edit_customer_path, class: 'btn btn-primary'
+
+table.table 
+  thead
+    tr 
+      th scope='col' 日付
+      th scope='col' menu
+  tbody 
+    tr
+      td 2021-12-21
+      td cut

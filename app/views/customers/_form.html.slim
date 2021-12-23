@@ -1,0 +1,26 @@
+/ 検証エラーのメッセージかあれば表示する
+- if @customer.errors.present?
+ ul#error_explanation 
+  - @customer.errors.full_messages.each do |message|
+    li.alert.alert-danger role="alert" = message
+= form_with model: customer, local: true do |f|
+  = f.label :name, class: 'form-label'
+  = f.text_field :name, id: 'customer_name', class: 'form-control'
+
+  = f.label :birthday, class: 'form-label'
+  = f.text_field :birthday, id: 'customer_birthday', class: 'form-control'
+
+  = f.label :address, class: 'form-label'
+  = f.text_field :address, id: 'customer_address', class: 'form-control'
+
+  = f.label :phone, class: 'form-label'
+  = f.text_field :phone, id: 'customer_phone', class: 'form-control'
+
+  .form-check
+    = f.radio_button :gender, :man, class: 'form-check-input'
+    = f.label :gender, "男性", { value: :man } 
+  .form-check
+    = f.radio_button :gender, :woman, class: 'form-check-input'
+    = f.label :gender, "女性", { value: :woman }
+
+  = f.submit nil, class: 'btn btn-outline-primary'

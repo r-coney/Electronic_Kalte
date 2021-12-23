@@ -26,6 +26,9 @@ html
               li.nav-item
                 =link_to 'ログアウト', '#', class: 'nav-link'
     .container
+      / Flashメッセージがあれば表示する
+      - if flash.notice.present?
+        .alert.alert-success = flash.notice
       = yield
 
 

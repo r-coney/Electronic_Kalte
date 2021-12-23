@@ -1,22 +1,5 @@
-h1 顧客登録
+h1.page-title 顧客登録
 
-= form_with model: @customer, local: true do |f|
-  = f.label :name
-  = f.text_field :name, id: 'customer_name' 
-
-  = f.label :birthday
-  = f.text_field :birthday, id: 'customer_birthday'
-
-  = f.label :address
-  = f.text_field :address, id: 'customer_address'
-
-  = f.label :phone
-  = f.text_field :phone, id: 'customer_phone'
-
-  = f.radio_button :gender, :man
-  = f.label :gender, "男性", { value: :man } 
-  = f.radio_button :gender, :woman
-  = f.label :gender, "女性", { value: :woman } 
-  = f.submit nil, class: 'btn'
+= render partial: 'form', locals: { customer: @customer }
 
 = link_to '顧客一覧', customers_path

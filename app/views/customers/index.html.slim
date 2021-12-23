@@ -1,15 +1,16 @@
-h1 顧客一覧
+h1.page-title 顧客一覧
 
-= link_to '顧客登録', new_customer_path
+= link_to '顧客登録', new_customer_path 
 
-table 
+table.table
   thead 
-    tr= Customer.human_attribute_name(:name)
-    tr= Customer.human_attribute_name(:id)
-    tr= Customer.human_attribute_name(:phone)
+    tr 
+      th scope='col' = Customer.human_attribute_name(:id)
+      th scope='col' = Customer.human_attribute_name(:name)
+      th scope='col' =  Customer.human_attribute_name(:phone)
   tbody 
     - @customers.each do |customer|
-      tr 
-        td= link_to customer.name, customer
+      tr
         td= customer.id 
+        td= link_to customer.name, customer
         td= customer.phone
