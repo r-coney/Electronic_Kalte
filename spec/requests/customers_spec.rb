@@ -33,7 +33,7 @@ RSpec.describe "Customers", type: :request do
   
   describe "#show" do
     it '顧客詳細画面の表示に成功する' do
-      get customers_path(test_customer)
+      get customer_path(test_customer)
       expect(response).to have_http_status(200)
     end
   end
@@ -54,7 +54,7 @@ RSpec.describe "Customers", type: :request do
     end
     
     context '無効な顧客情報の場合' do
-      it '顧客情報の編集に失敗し、編集画面にもどる' do
+      it '顧客情報の編集に失敗する' do
         post customers_path(test_customer), params: { customer: { name: ' ' } }
         expect(response.body).to include '氏名を入力してください'
       end

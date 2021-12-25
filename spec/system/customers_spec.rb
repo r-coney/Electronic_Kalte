@@ -15,20 +15,20 @@ describe '顧客管理機能', type: :system do
     before do
       visit new_customer_path
       fill_in '氏名', with: customer_name
-      fill_in '生年月日', with: '2021-12-17'
+      fill_in '生年月日', with: '002021-12-17'
       fill_in '住所', with: '滋賀県大津市'
       fill_in '電話番号', with: '000000000'
       choose '男性'
       click_button '登録する'
     end
-    context '正しい顧客情報を入力した場合' do
+    context '有効な顧客情報を入力した場合' do
       let(:customer_name) { '新規登録のテスト顧客'}
       it '正常に登録される' do
         expect(page).to have_selector '.alert-success', text: "「#{customer_name}様」を登録しました。"
       end
     end
 
-    context '間違った顧客情報を入力した場合' do
+    context '無効な顧客情報を入力した場合' do
       let(:customer_name) { '' }
       it '顧客登録に失敗し、顧客登録にもどる' do
         within '#error_explanation' do

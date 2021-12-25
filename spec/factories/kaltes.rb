@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :kalte do
-    menu { "MyString" }
-    request { "MyText" }
-    menu_description { "MyText" }
-    note { "MyText" }
+    menu { "cut" }
+    request { "テスト" }
+    menu_description { "テストのカルテ" }
+    note { "テストカルテのメモ" }
   end
 end
