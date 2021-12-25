@@ -31,6 +31,26 @@ RSpec.describe "Kaltes", type: :request do
     end
   end
 
-  # describe "#edit" do
+  describe "#edit" do
+    it 'カルテ編集画面の表示に成功する' do
+      get edit_kalte_path(test_kalte)
+      expect(response).to have_http_status(200)
+    end
+  end
 
+  describe "#update" do
+    context '有効なカルテ情報の場合' do
+      it 'カルテ情報の編集に成功する' do
+        patch kalte_path(test_kalte), params: { kalte: { menu: 'カルテの更新', request: '更新のテストをしたい', menu_description: 'カルテ編集のテスト', note: 'カルテの編集が正常にできる' } }
+        expect(test_kalte.reload.menu).to eq 'カルテの更新'
+      end
+    end
+
+    context '無効なカルテ情報の場合' do
+      it 'カルテ情報の編集に失敗する' do
+        patch kalte_path(test_kalte), params: { kalte: { menu: ' ' } }
+        expect(response.body).to include 'メニューを入力してください'
+      end
+    end
+  end
 end

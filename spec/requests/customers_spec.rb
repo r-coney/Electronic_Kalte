@@ -55,7 +55,7 @@ RSpec.describe "Customers", type: :request do
     
     context '無効な顧客情報の場合' do
       it '顧客情報の編集に失敗する' do
-        post customers_path(test_customer), params: { customer: { name: ' ' } }
+        patch customer_path(test_customer), params: { customer: { name: ' ' } }
         expect(response.body).to include '氏名を入力してください'
       end
     end

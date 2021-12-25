@@ -10,13 +10,23 @@ class KaltesController < ApplicationController
   def create
     @kalte = Kalte.new(kalte_params)
     if @kalte.save
-      redirect_to @kalte, notice: 'カルテを作成しました。'
+      redirect_to @kalte, notice: 'カルテを作成しました'
     else
       render :new
     end
   end
 
   def edit
+    @kalte = Kalte.find(params[:id])
+  end
+  
+  def update
+    @kalte = Kalte.find(params[:id])
+    if @kalte.update(kalte_params)
+      redirect_to @kalte, notice: 'カルテを更新しました'
+    else
+      render :edit
+    end
   end
 
   private

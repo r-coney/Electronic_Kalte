@@ -14,7 +14,7 @@ RSpec.describe "KaltesSpec.rbs", type: :system do
     context "有効なカルテ情報を入力した場合" do
       let(:kalte_menu) { 'color' }
       it '正常に作成される' do
-        expect(page).to have_selector '.alert-success', text: "カルテを作成しました。"
+        expect(page).to have_selector '.alert-success', text: "カルテを作成しました"
       end
     end
 
