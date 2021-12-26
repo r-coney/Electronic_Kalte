@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "KaltesSpec.rbs", type: :system do
+RSpec.describe "カルテ管理機能", type: :system do
+  let(:test_kalte) { FactoryBot.create(:kalte) }
   describe "カルテを作成する" do
     before do
       visit new_kalte_path
@@ -25,6 +26,40 @@ RSpec.describe "KaltesSpec.rbs", type: :system do
           expect(page).to have_content 'メニューを入力してください'
         end
         expect(page).to have_selector 'h1', text: "カルテ作成"
+      end
+    end
+  end
+
+  describe "カルテ詳細表示機能機能" do
+    it 'カルテ詳細情報が表示される' do
+      visit kalte_path(test_kalte)
+      expect(page).to have_content test_kalte.menu
+      expect(page).to have_content test_kalte.request
+      expect(page).to have_content test_kalte.menu_description
+      expect(page).to have_content test_kalte.note
+    end
+  end
+
+  describe "カルテ情報編集機能" do
+    before do
+      visit edit_kalte_path(test_kalte)
+      fill_in 'メニュー', with: kalte_menu
+      fill_in '要望', with: "明るくしたい"
+      fill_in '施術内容', with: "カルテ作成のテストをする"
+      fill_in 'メモ', with: "カルテ作成テストのメモ"
+      click_button '更新する'
+    end
+    context '有効なカルテ情報の場合' do
+      let(:kalte_menu) { 'cut&color' }
+      it '正常に更新できる' do
+        expect(page).to have_selector '.alert-success', text: "カルテを更新しました"
+      end
+    end
+
+    context '無効なカルテ情報の場合' do
+      let(:kalte_menu) { ' ' }
+      it 'カルテ情報の更新に失敗し、更新画面に戻る' do
+        expect(page).to have_selector 'h1', text: "カルテ情報編集"
       end
     end
   end

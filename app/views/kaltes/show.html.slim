@@ -1,2 +1,37 @@
-h1 Kaltes#show
-p Find me in app/views/kaltes/show.html.slim
+h1.page-title カルテ詳細
+
+table.table 
+  thead
+    tr 
+      th scope='col' = Kalte.human_attribute_name(:created_at) 
+      th scope='col' = Kalte.human_attribute_name(:menu) 
+  tbody 
+    tr
+      td = @kalte.created_at
+      td = @kalte.menu
+
+table.table 
+  thead
+    tr 
+      th scope='col' = Kalte.human_attribute_name(:request)
+  tbody 
+    tr 
+      td = @kalte.request
+
+table.table 
+  thead 
+    tr 
+      th scope='col' = Kalte.human_attribute_name(:menu_description)
+  tbody 
+    tr 
+      td = @kalte.menu_description
+
+table.table 
+  thead 
+    tr 
+      th scope='col' = Kalte.human_attribute_name(:note)
+  tbody 
+    tr 
+      td = @kalte.note
+
+
