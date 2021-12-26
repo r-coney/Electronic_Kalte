@@ -34,4 +34,6 @@ table.table
     tr 
       td = @kalte.note
 
+= link_to '編集', edit_kalte_path, class: 'btn btn-primary'
+= link_to '削除', @kalte, method: :delete, data: { confirm: "カルテを削除します。よろしいですか？" }, class: 'btn btn-danger'
 

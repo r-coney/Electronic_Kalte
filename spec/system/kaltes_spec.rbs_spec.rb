@@ -49,6 +49,7 @@ RSpec.describe "カルテ管理機能", type: :system do
       fill_in 'メモ', with: "カルテ作成テストのメモ"
       click_button '更新する'
     end
+
     context '有効なカルテ情報の場合' do
       let(:kalte_menu) { 'cut&color' }
       it '正常に更新できる' do
@@ -63,4 +64,9 @@ RSpec.describe "カルテ管理機能", type: :system do
       end
     end
   end
+
+  # describe "カルテ削除機能" do
+  #   it 'カルテを削除する' do
+  #   end
+  # end
 end

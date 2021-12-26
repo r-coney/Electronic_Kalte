@@ -29,6 +29,11 @@ class KaltesController < ApplicationController
     end
   end
 
+  def destroy
+    @kalte = Kalte.find(params[:id])
+    @kalte.destroy
+  end
+
   private
     def kalte_params 
       params.require(:kalte).permit(:menu, :request, :menu_description, :note)
