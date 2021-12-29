@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "カルテ管理機能", type: :system do
   let!(:test_customer) { FactoryBot.create(:customer)}
-  let(:test_kalte) { FactoryBot.create(:kalte) }
+  let!(:test_kalte) { FactoryBot.create(:kalte, customer_id: test_customer.id) }
   describe "カルテを作成する" do
     before do
       visit new_customer_kalte_path(test_customer)
@@ -60,14 +60,20 @@ RSpec.describe "カルテ管理機能", type: :system do
 
     context '無効なカルテ情報の場合' do
       let(:kalte_menu) { ' ' }
-      it 'カルテ情報の更新に失敗し、更新画面に戻る' do
+      it 'カルテ情報の更新に失敗し、更新画面に戻る' do 
         expect(page).to have_selector 'h1', text: "カルテ情報編集"
       end
     end
   end
 
-  # describe "カルテ削除機能" do
-  #   it 'カルテを削除する' do
-  #   end
-  # end
+  describe "カルテ削除機能" do
+    before do
+       visit customer_path(test_customer) 
+       click_link '削除'
+    end
+    it 'カルテを削除する' do
+      expect(page.accept_confirm).to eq "カルテを削除します。よろしいですか？"
+      expect(page).to have_selector '.alert-success', text: "カルテを削除しました"
+    end
+  end
 end

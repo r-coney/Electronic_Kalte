@@ -18,6 +18,7 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @kaltes = @customer.kaltes
   end
 
   def edit
