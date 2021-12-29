@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "カルテ管理機能", type: :system do
+  let!(:test_customer) { FactoryBot.create(:customer)}
   let(:test_kalte) { FactoryBot.create(:kalte) }
   describe "カルテを作成する" do
     before do
-      visit new_kalte_path
+      visit new_customer_kalte_path(test_customer)
       fill_in 'メニュー', with: kalte_menu
       fill_in '要望', with: "明るくしたい"
       fill_in '施術内容', with: "カルテ作成のテストをする"
@@ -32,7 +33,7 @@ RSpec.describe "カルテ管理機能", type: :system do
 
   describe "カルテ詳細表示機能機能" do
     it 'カルテ詳細情報が表示される' do
-      visit kalte_path(test_kalte)
+      visit customer_kalte_path(test_customer, test_kalte)
       expect(page).to have_content test_kalte.menu
       expect(page).to have_content test_kalte.request
       expect(page).to have_content test_kalte.menu_description
@@ -42,7 +43,7 @@ RSpec.describe "カルテ管理機能", type: :system do
 
   describe "カルテ情報編集機能" do
     before do
-      visit edit_kalte_path(test_kalte)
+      visit edit_customer_kalte_path(test_customer, test_kalte)
       fill_in 'メニュー', with: kalte_menu
       fill_in '要望', with: "明るくしたい"
       fill_in '施術内容', with: "カルテ作成のテストをする"

@@ -3,7 +3,7 @@
   - kalte.errors.full_messages.each do |message|
     li.alert.alert-danger role="alert" = message
 
-= form_with model: kalte, local: true do |f|
+= form_with model: [customer,kalte], local: true do |f|
   = f.label :menu, class: 'form-label'
   = f.text_field :menu, class: 'form-control'
 

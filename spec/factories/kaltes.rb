@@ -4,5 +4,6 @@ FactoryBot.define do
     request { "テスト" }
     menu_description { "テストのカルテ" }
     note { "テストカルテのメモ" }
+    customer
   end
 end

@@ -9,4 +9,6 @@ class Customer < ApplicationRecord
    validates :address, presence: true, length: { maximum: 50 }
    validates :phone, presence: true, length: { maximum: 15 }
    validates :gender, presence: true
+
+   has_many :kaltes
 end
