@@ -1,2 +1,18 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+h1.page-title スタッフ詳細
+
+table.table
+  tr 
+    th scope="col" = User.human_attribute_name(:name)
+    td = @user.name
+  tr 
+    th scope="col" = User.human_attribute_name(:phone)
+    td = @user.phone 
+  tr 
+    th scope="col" = User.human_attribute_name(:email)
+    td = @user.email 
+  tr 
+    th scope="col" = User.human_attribute_name(:created_at)
+    td = @user.created_at 
+  tr 
+    th scope="col" = User.human_attribute_name(:updated_at)
+    td = @user.updated_at

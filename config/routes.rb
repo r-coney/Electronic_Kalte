@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/new'
-  get 'users/edit'
-  get 'users/show'
   root to: 'customers#index'
+  resources :users
   resources :customers, except: [:delete]
   resources :customer do
     resources :kaltes, except: [:index]
