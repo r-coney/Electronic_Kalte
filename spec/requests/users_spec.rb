@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
+  let!(:test_user) { FactoryBot.create(:user) }
+
+  describe "#index" do
+    it "スタッフ一覧ページの表示に成功する" do
+      get users_path
+      expect(response).to have_http_status(200)
+    end
+  end
+  
   describe "#new" do
     it "ユーザー登録ページの表示に成功する" do
       get new_user_path
@@ -21,7 +30,15 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
+
+  describe "#show" do
+    it "スタッフ詳細ページの表示に成功する" do
+      get user_path(test_user)
+      expect(response).to have_http_status(200)
+    end
+  end
   
+
     # describe "GET /edit" do
     #   it "returns http success" do
     #     get "/users/edit"

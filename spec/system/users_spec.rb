@@ -2,6 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   describe "ユーザー管理機能" do
+    let!(:test_user) { FactoryBot.create(:user)}
+    describe "一覧表示機能" do
+      before { visit users_path }
+      it "登録されたスタッフが表示される" do
+        expect(page).to have_content test_user.name
+        expect(page).to have_content test_user.phone
+        expect(page).to have_content test_user.email
+      end
+    end
+
     describe "ユーザーを登録する" do 
       before do
         visit new_user_path 
