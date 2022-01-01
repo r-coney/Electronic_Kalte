@@ -4,12 +4,12 @@ RSpec.describe "Users", type: :request do
   let!(:test_user) { FactoryBot.create(:user) }
 
   describe "#index" do
-    it "スタッフ一覧ページの表示に成功する" do
+    it "ユーザー一覧ページの表示に成功する" do
       get users_path
       expect(response).to have_http_status(200)
     end
   end
-  
+
   describe "#new" do
     it "ユーザー登録ページの表示に成功する" do
       get new_user_path
@@ -32,25 +32,33 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "#show" do
-    it "スタッフ詳細ページの表示に成功する" do
+    it "ユーザー詳細ページの表示に成功する" do
       get user_path(test_user)
       expect(response).to have_http_status(200)
     end
   end
   
 
-    # describe "GET /edit" do
-    #   it "returns http success" do
-    #     get "/users/edit"
-    #     expect(response).to have_http_status(:success)
-    #   end
-    # end
+  describe "#edit" do
+    it "ユーザー情報編集ページの表示に成功する" do
+      get edit_user_path(test_user)
+      expect(response).to have_http_status(200)
+    end
+  end
   
-    # describe "GET /show" do
-    #   it "returns http success" do
-    #     get "/users/show"
-    #     expect(response).to have_http_status(:success)
-    #   end
-    # end
+  describe "update" do
+    context "有効なユーザー情報の場合" do
+      it "ユーザー情報の更新に成功する" do
+        patch user_path(test_user),params: { user: {  name: "test", phone: "00000000000", email: "test@example.com", password: "password", password_confirmation: "password"} }
+        expect(test_user.reload.name).to eq "test"
+      end
+    end
 
+    context "無効なユーザー情報の場合" do
+      it "ユーザー情報の更新に失敗する" do
+        patch user_path(test_user),params: { user: {  name: " " } }
+        expect(response.body).to include "氏名を入力してください"
+      end
+    end
+  end
 end

@@ -32,8 +32,8 @@ RSpec.describe "カルテ管理機能", type: :system do
   end
 
   describe "カルテ詳細表示機能機能" do
+    before { visit customer_kalte_path(test_customer, test_kalte) }
     it 'カルテ詳細情報が表示される' do
-      visit customer_kalte_path(test_customer, test_kalte)
       expect(page).to have_content test_kalte.menu
       expect(page).to have_content test_kalte.request
       expect(page).to have_content test_kalte.menu_description

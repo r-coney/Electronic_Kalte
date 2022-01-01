@@ -16,3 +16,5 @@ table.table
   tr 
     th scope="col" = User.human_attribute_name(:updated_at)
     td = @user.updated_at
+  
+= link_to "編集", edit_user_path(@user)

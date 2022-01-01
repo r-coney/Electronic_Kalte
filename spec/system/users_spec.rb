@@ -39,5 +39,39 @@ RSpec.describe "Users", type: :system do
         end
       end
     end
+
+    describe "ユーザー詳細表示機能" do
+      before { visit user_path(test_user) }
+      it "ユーザー詳細情報が表示される" do
+        expect(page).to have_content test_user.name
+        expect(page).to have_content test_user.phone
+        expect(page).to have_content test_user.email
+      end
+    end
+
+    describe "ユーザー情報編集機能" do
+      before do
+        visit edit_user_path(test_user)
+        fill_in "氏名", with: test_name
+        fill_in "電話番号", with: "00000000000"
+        fill_in "Eメール", with: "test@example.com"
+        fill_in "パスワード", with: "password"
+        fill_in "パスワード（確認用）", with: "password"
+        click_button '更新する'
+      end
+      context "有効なユーザー情報の場合" do
+        let(:test_name) { "更新のテスト"}
+        it "正常に更新できる" do
+          expect(page).to have_selector ".alert-success", text: "スタッフ情報を更新しました"
+        end
+      end
+
+      context "無効なユーザー情報の場合" do
+        let(:test_name) { " " }
+        it "ユーザー情報の更新に失敗し、更新画面に戻る" do
+          expect(page).to have_selector "h1", text: "スタッフ情報編集"
+        end
+      end
+    end
   end
 end
