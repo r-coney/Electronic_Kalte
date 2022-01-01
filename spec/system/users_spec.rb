@@ -73,5 +73,16 @@ RSpec.describe "Users", type: :system do
         end
       end
     end
+
+    describe "ユーザー削除機能" do
+      before do
+        visit user_path(test_user)
+        click_link "削除"
+      end
+      it "ユーザーが削除される" do
+        expect(page.accept_confirm).to eq "#{test_user.name}を削除します。よろしいですか？"
+        expect(page).to have_selector '.alert-success', text: "#{test_user.name}を削除しました"
+      end
+    end
   end
 end

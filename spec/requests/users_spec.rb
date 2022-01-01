@@ -46,7 +46,7 @@ RSpec.describe "Users", type: :request do
     end
   end
   
-  describe "update" do
+  describe "#update" do
     context "有効なユーザー情報の場合" do
       it "ユーザー情報の更新に成功する" do
         patch user_path(test_user),params: { user: {  name: "test", phone: "00000000000", email: "test@example.com", password: "password", password_confirmation: "password"} }
@@ -59,6 +59,12 @@ RSpec.describe "Users", type: :request do
         patch user_path(test_user),params: { user: {  name: " " } }
         expect(response.body).to include "氏名を入力してください"
       end
+    end
+  end
+
+  describe "#destroy" do
+    it "ユーザーが消去される" do
+      expect{ delete user_path(test_user) }.to change{ User.count }.by(-1)
     end
   end
 end

@@ -33,6 +33,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def destroy 
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path, notice: "#{@user.name}を削除しました"
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :phone, :email, :password, :password_confirmation)
