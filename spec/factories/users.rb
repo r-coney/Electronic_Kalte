@@ -4,6 +4,6 @@ FactoryBot.define do
     phone { "00000000000" }
     email { "test@example.com" }
     admin { false }
-    password_digest { "password" }
+    password { "password" }
   end
 end

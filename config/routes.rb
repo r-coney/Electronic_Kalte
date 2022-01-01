@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'customers#index'
   get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
   resources :users
   resources :customers, except: [:delete]
   resources :customer do
