@@ -6,10 +6,16 @@ class SessionsController < ApplicationController
     user = User.find_by(email: session_params[:email])
     if user&.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to root_url, notice: "ログインしました"
+      redirect_to root_url, flash: { success: "ログインしました" }
     else
+      flash.now[:danger] = 'Eメールまたはパスワードが正しくありません'
       render :new
     end
+  end
+
+  def destroy 
+    reset_session
+    redirect_to login_path, flash: { success: "ログアウトしました" }
   end
 
   private

@@ -26,11 +26,14 @@ html
               li.nav-item
                 =link_to 'スタッフ一覧', users_path, class: 'nav-link'
               li.nav-item
-                =link_to 'ログアウト', '#', class: 'nav-link'
+                =link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
     .container
       / Flashメッセージがあれば表示する
-      - if flash.notice.present?
-        .alert.alert-success = flash.notice
+      / - if flash.notice.present?
+      /   .alert.alert-success = flash.notice
+
+      - flash.each do |message_type, message|
+        = content_tag(:div, message, class: "alert alert-#{message_type}") 
       = yield
 
 

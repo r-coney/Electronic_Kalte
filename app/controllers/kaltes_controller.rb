@@ -11,7 +11,7 @@ class KaltesController < ApplicationController
   def create
     @kalte = Kalte.new(kalte_params)
     if @kalte.save
-      redirect_to customer_kalte_path(@kalte.customer_id, @kalte.id), notice: 'カルテを作成しました'
+      redirect_to customer_kalte_path(@kalte.customer_id, @kalte.id), flash: { success: 'カルテを作成しました' }
     else
       render :new
     end
@@ -24,7 +24,7 @@ class KaltesController < ApplicationController
   def update
     @kalte = Kalte.find(params[:id])
     if @kalte.update(kalte_params)
-      redirect_to customer_kalte_path(@kalte.customer_id, @kalte.id), notice: 'カルテを更新しました'
+      redirect_to customer_kalte_path(@kalte.customer_id, @kalte.id), flash: { success: 'カルテを更新しました' }
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class KaltesController < ApplicationController
   def destroy
     @kalte = Kalte.find(params[:id])
     @kalte.destroy
-    redirect_to customer_path(@kalte.customer_id), notice: "カルテを削除しました"
+    redirect_to customer_path(@kalte.customer_id), flash: { success: "カルテを削除しました" }
   end
 
   private

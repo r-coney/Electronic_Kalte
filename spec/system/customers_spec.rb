@@ -24,7 +24,7 @@ describe '顧客管理機能', type: :system do
     context '有効な顧客情報を入力した場合' do
       let(:customer_name) { '新規登録のテスト顧客'}
       it '正常に登録される' do
-        expect(page).to have_selector '.alert-success', text: "「#{customer_name}様」を登録しました。"
+        expect(page).to have_selector '.alert-success', text: "「#{customer_name}様」を登録しました"
       end
     end
 
@@ -62,7 +62,7 @@ describe '顧客管理機能', type: :system do
     context '有効な情報の場合' do
       let(:customer_name) { '顧客情報編集のテスト顧客' }
       it '顧客情報の更新に成功する' do
-        expect(page).to have_selector '.alert-success', text: "顧客情報を更新しました。"
+        expect(page).to have_selector '.alert-success', text: "顧客情報を更新しました"
         expect(page).to have_content '顧客情報編集のテスト顧客'
       end
     end

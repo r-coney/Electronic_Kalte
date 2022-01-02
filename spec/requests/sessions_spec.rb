@@ -23,5 +23,12 @@ RSpec.describe "Sessions", type: :request do
         expect(session[:user_id]).to eq nil
       end
     end
+
+    describe "#destroy" do
+      it "セッションが消去される" do
+        delete logout_path(test_user)
+        expect(session[:user_id]).to eq nil
+      end
+    end
   end
 end
