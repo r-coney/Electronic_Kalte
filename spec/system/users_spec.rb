@@ -21,7 +21,7 @@ RSpec.describe "Users", type: :system do
         visit new_user_path 
         fill_in "氏名", with: test_name
         fill_in "電話番号", with: "00000000000"
-        fill_in "Eメール", with: "test_user@example.com"
+        fill_in "Eメール", with: "test@example.com"
         fill_in "パスワード", with: "password"
         fill_in "パスワード（確認用）", with: "password"
         click_button "登録する"

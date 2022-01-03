@@ -21,7 +21,7 @@ RSpec.describe "Users", type: :request do
   describe "#create" do
     context '有効なユーザー情報の場合' do
       it 'ユーザーの登録に成功する' do
-        expect{ post users_path, params: { user: { name: "test", phone: "00000000000", email: "test@example.com", password: "password", password_confirmation: "password" } } }.to change{ User.count }.by(1)
+        expect{ post users_path, params: { user: { name: "test", phone: "02000000000", email: "test@example.com", password: "password", password_confirmation: "password" } } }.to change{ User.count }.by(1)
       end
     end
 
