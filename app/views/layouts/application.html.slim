@@ -19,14 +19,16 @@ html
             span.navbar-toggler-icon
           .collapse.navbar-collapse.justify-content-end#navbarNav
             ul.navbar-nav
-              li.nav-item
-                =link_to '顧客登録', new_customer_path, class: 'nav-link'
-              li.nav-item
-                =link_to '顧客一覧', customers_path, class: 'nav-link'
-              li.nav-item
-                =link_to 'スタッフ一覧', users_path, class: 'nav-link'
-              li.nav-item
-                =link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+              - if current_user
+                li.nav-item
+                  =link_to '顧客登録', new_customer_path, class: 'nav-link'
+                li.nav-item
+                  =link_to '顧客一覧', customers_path, class: 'nav-link'
+                - if current_user.admin?
+                  li.nav-item
+                    =link_to 'スタッフ一覧', users_path, class: 'nav-link'
+                li.nav-item
+                  =link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
     .container
       / Flashメッセージがあれば表示する
       / - if flash.notice.present?
