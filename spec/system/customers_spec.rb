@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe '顧客管理機能', type: :system do
-  let!(:customer) { FactoryBot.create(:customer)}
+  let!(:test_user) { FactoryBot.create(:user) }
+  let!(:customer) { FactoryBot.create(:customer) }
+  before { sign_in(test_user) }
   describe '一覧表示機能' do
     it '登録された顧客が表示される' do
       visit customers_path

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   let!(:test_user) { FactoryBot.create(:user) }
+  before { log_in_as(test_user) }
 
   describe "#index" do
     it "ユーザー一覧ページの表示に成功する" do

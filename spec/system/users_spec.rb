@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   describe "ユーザー管理機能" do
-    let!(:test_user) { FactoryBot.create(:user)}
+    let!(:test_user) { FactoryBot.create(:user) }
     describe "一覧表示機能" do
-      before { visit users_path }
+      before do
+        sign_in(test_user)
+        visit users_path
+      end 
       it "登録されたスタッフが表示される" do
         expect(page).to have_content test_user.name
         expect(page).to have_content test_user.phone
@@ -14,6 +17,7 @@ RSpec.describe "Users", type: :system do
 
     describe "ユーザーを登録する" do 
       before do
+        sign_in(test_user)
         visit new_user_path 
         fill_in "氏名", with: test_name
         fill_in "電話番号", with: "00000000000"
@@ -41,7 +45,10 @@ RSpec.describe "Users", type: :system do
     end
 
     describe "ユーザー詳細表示機能" do
-      before { visit user_path(test_user) }
+      before do
+        sign_in(test_user)
+        visit user_path(test_user)
+      end 
       it "ユーザー詳細情報が表示される" do
         expect(page).to have_content test_user.name
         expect(page).to have_content test_user.phone
@@ -51,6 +58,7 @@ RSpec.describe "Users", type: :system do
 
     describe "ユーザー情報編集機能" do
       before do
+        sign_in(test_user)
         visit edit_user_path(test_user)
         fill_in "氏名", with: test_name
         fill_in "電話番号", with: "00000000000"
@@ -76,6 +84,7 @@ RSpec.describe "Users", type: :system do
 
     describe "ユーザー削除機能" do
       before do
+        sign_in(test_user)
         visit user_path(test_user)
         click_link "削除"
       end

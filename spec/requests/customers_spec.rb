@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Customers", type: :request do
-  let!(:test_customer) { FactoryBot.create(:customer)}
+  let!(:test_user) { FactoryBot.create(:user) }
+  let!(:test_customer) { FactoryBot.create(:customer) }
+  before { log_in_as(test_user) }
   describe "#index" do
     it '顧客一覧画面の表示に成功する' do
       get customers_path

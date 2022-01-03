@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Kaltes", type: :request do
+  let!(:test_user) { FactoryBot.create(:user) }
   let!(:test_customer) { FactoryBot.create(:customer)}
   let!(:test_kalte) { FactoryBot.create(:kalte) }
+  before { log_in_as(test_user) }
   describe "#new" do
     it "カルテ作成ページの表示に成功する" do
       get new_customer_kalte_path(test_customer)

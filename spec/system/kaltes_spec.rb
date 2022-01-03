@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "カルテ管理機能", type: :system do
-  let!(:test_customer) { FactoryBot.create(:customer)}
+  let!(:test_user) { FactoryBot.create(:user) }
+  let!(:test_customer) { FactoryBot.create(:customer) }
   let!(:test_kalte) { FactoryBot.create(:kalte, customer_id: test_customer.id) }
+  before { sign_in(test_user) }
   describe "カルテを作成する" do
     before do
       visit new_customer_kalte_path(test_customer)

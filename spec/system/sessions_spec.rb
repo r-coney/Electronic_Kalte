@@ -31,6 +31,7 @@ RSpec.describe "Sessions", type: :system do
 
     describe "ログアウト" do
       before do
+        sign_in(test_user)
         visit user_path(test_user)
         click_link "ログアウト"
       end
