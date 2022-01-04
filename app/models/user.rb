@@ -3,8 +3,8 @@ class User < ApplicationRecord
   before_save :downcase_email
   
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_PHONE_NUMBER_REGEX = /\A\d{10,11}\z/
-  validates :phone, presence: true, format: { with: VALID_PHONE_NUMBER_REGEX }
+  VALID_PHONE_REGEX = /\A\d{10,11}\z/
+  validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true,
               format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }

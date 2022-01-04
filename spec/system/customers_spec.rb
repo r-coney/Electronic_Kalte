@@ -19,7 +19,7 @@ describe '顧客管理機能', type: :system do
       fill_in '氏名', with: customer_name
       fill_in '生年月日', with: '002021-12-17'
       fill_in '住所', with: '滋賀県大津市'
-      fill_in '電話番号', with: '000000000'
+      fill_in '電話番号', with: '09000000000'
       choose '男性'
       click_button '登録する'
     end
@@ -55,9 +55,9 @@ describe '顧客管理機能', type: :system do
     before do 
       visit edit_customer_path(customer) 
       fill_in '氏名', with: customer_name
-      fill_in '生年月日', with: '2021-12-17'
+      fill_in '生年月日', with: '002021-12-17'
       fill_in '住所', with: '滋賀県大津市'
-      fill_in '電話番号', with: '000000000'
+      fill_in '電話番号', with: '09000000000'
       choose '男性'
       click_button '更新する'
     end
