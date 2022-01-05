@@ -1,11 +1,12 @@
 class KaltesController < ApplicationController
   before_action :current_customer
+  before_action :set_kalte, only: [:show, :edit, :update, :destroy]
+  
   def new
     @kalte = Kalte.new
   end
   
   def show
-    @kalte = Kalte.find(params[:id])
   end
   
   def create
@@ -18,11 +19,9 @@ class KaltesController < ApplicationController
   end
 
   def edit
-    @kalte = Kalte.find(params[:id])
   end
   
   def update
-    @kalte = Kalte.find(params[:id])
     if @kalte.update(kalte_params)
       redirect_to customer_kalte_path(@kalte.customer_id, @kalte.id), flash: { success: 'カルテを更新しました' }
     else
@@ -31,7 +30,6 @@ class KaltesController < ApplicationController
   end
 
   def destroy
-    @kalte = Kalte.find(params[:id])
     @kalte.destroy
     redirect_to customer_path(@kalte.customer_id), flash: { success: "カルテを削除しました" }
   end
@@ -43,5 +41,9 @@ class KaltesController < ApplicationController
 
     def current_customer
       @customer = Customer.find(params[:customer_id])
+    end
+
+    def set_kalte
+      @kalte = Kalte.find(params[:id])
     end
 end

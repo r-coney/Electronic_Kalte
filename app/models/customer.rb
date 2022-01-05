@@ -7,7 +7,6 @@ class Customer < ApplicationRecord
    validates :name, presence: true, length: { maximum: 50 }
 
    VALID_BERTHDAY_REGEX = /\A\d{4}-\d{2}-\d{2}\z/
-
    validates :birthday, presence: true, length: { maximum: 20},
                         format: { with: VALID_BERTHDAY_REGEX }
 
@@ -20,4 +19,14 @@ class Customer < ApplicationRecord
    validates :gender, presence: true
    
    has_many :kaltes
+
+   scope :recent, -> { order(created_at: :desc) }
+
+   def self.ransackable_attributes(auth_object = nil)
+    %w[name phone]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end

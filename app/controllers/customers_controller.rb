@@ -1,6 +1,10 @@
 class CustomersController < ApplicationController
+before_action :set_customer, only: [:show, :edit, :update]
+
   def index
-    @customers = Customer.all
+    customers = Customer.all
+    @q = customers.ransack(params[:q])
+    @customers = @q.result(distinct: true).recent
   end
 
   def new
@@ -17,16 +21,13 @@ class CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
     @kaltes = @customer.kaltes
   end
 
   def edit
-    @customer = Customer.find(params[:id])
   end
   
   def update
-    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
     redirect_to @customer, flash: { success: "顧客情報を更新しました" }
     else
@@ -37,5 +38,9 @@ class CustomersController < ApplicationController
  private
    def customer_params
     params.require(:customer).permit(:name, :birthday, :address, :phone, :gender)
+   end
+
+   def set_customer
+    @customer = Customer.find(params[:id])
    end
 end
