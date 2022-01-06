@@ -93,5 +93,24 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_selector '.alert-success', text: "#{test_user.name}を削除しました"
       end
     end
+
+    describe "管理者権限" do
+      let!(:not_admin_user) { FactoryBot.create(:user, admin: false) }
+      before{ sign_in(not_admin_user) }
+      it "管理者以外はスタッフ一覧画面の表示に失敗し、顧客一覧画面が表示される" do
+        visit users_path
+        expect(current_path).to eq root_path
+      end
+
+      it "管理者以外はスタッフ登録画面の表示に失敗し、顧客一覧画面が表示される" do
+        visit new_user_path
+        expect(current_path).to eq root_path
+      end
+
+      it "管理者以外はスタッフ情報編集画面の表示に失敗し、顧客一覧画面が表示される" do
+        visit edit_user_path(not_admin_user)
+        expect(current_path).to eq root_path
+      end
+    end
   end
 end

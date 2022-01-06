@@ -19,6 +19,14 @@ table.table
       td = @kalte.request
 
 table.table 
+  thead
+    tr 
+      th scope='col' = Kalte.human_attribute_name(:image)
+  tbody 
+    tr 
+      td = image_tag @kalte.image if @kalte.image.attached? 
+
+table.table 
   thead 
     tr 
       th scope='col' = Kalte.human_attribute_name(:menu_description)

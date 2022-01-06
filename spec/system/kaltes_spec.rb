@@ -6,19 +6,25 @@ RSpec.describe "カルテ管理機能", type: :system do
   let!(:test_kalte) { FactoryBot.create(:kalte, customer_id: test_customer.id) }
   before { sign_in(test_user) }
   describe "カルテを作成する" do
+    let(:image_path) { Rails.root.join('public/images/test_image.jpg') }
     before do
       visit new_customer_kalte_path(test_customer)
       fill_in 'メニュー', with: kalte_menu
-      fill_in '要望', with: "明るくしたい"
+      fill_in '要望', with: "テストする"
+      attach_file('kalte_image', image_path, make_visible: true)
       fill_in '施術内容', with: "カルテ作成のテストをする"
       fill_in 'メモ', with: "カルテ作成テストのメモ"
       click_button '登録する'
     end
 
     context "有効なカルテ情報を入力した場合" do
-      let(:kalte_menu) { 'color' }
+      let(:kalte_menu) { 'test' }
       it '正常に作成される' do
         expect(page).to have_selector '.alert-success', text: "カルテを作成しました"
+      end
+
+      it "画像が表示されている" do
+        expect(page).to have_selector("img[src$='test_image.jpg']")
       end
     end
 

@@ -1,7 +1,7 @@
 class KaltesController < ApplicationController
   before_action :current_customer
   before_action :set_kalte, only: [:show, :edit, :update, :destroy]
-  
+
   def new
     @kalte = Kalte.new
   end
@@ -36,7 +36,7 @@ class KaltesController < ApplicationController
 
   private
     def kalte_params 
-      params.require(:kalte).permit(:menu, :request, :menu_description, :note).merge(customer_id: params[:customer_id])
+      params.require(:kalte).permit(:menu, :request, :menu_description, :note, :image).merge(customer_id: params[:customer_id])
     end
 
     def current_customer

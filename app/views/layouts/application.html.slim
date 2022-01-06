@@ -20,6 +20,8 @@ html
           .collapse.navbar-collapse.justify-content-end#navbarNav
             ul.navbar-nav
               - if current_user
+                li.nav-item 
+                  =link_to current_user.name, user_path(current_user), class: "nav-link"
                 li.nav-item
                   =link_to '顧客登録', new_customer_path, class: 'nav-link'
                 li.nav-item
@@ -30,10 +32,6 @@ html
                 li.nav-item
                   =link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
     .container
-      / Flashメッセージがあれば表示する
-      / - if flash.notice.present?
-      /   .alert.alert-success = flash.notice
-
       - flash.each do |message_type, message|
         = content_tag(:div, message, class: "alert alert-#{message_type}") 
       = yield

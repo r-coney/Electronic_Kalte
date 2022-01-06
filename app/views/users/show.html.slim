@@ -19,4 +19,5 @@ table.table
   
 = link_to "編集", edit_user_path(@user)
 = link_to "削除", user_path(@user), method: :delete, data: { confirm: "#{@user.name}を削除します。よろしいですか？" }, class: 'btn btn-danger'
-= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-info"
+- if @user == current_user
+  = link_to "ログアウト", logout_path, method: :delete, class: "btn btn-info"

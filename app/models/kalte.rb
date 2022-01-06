@@ -5,4 +5,5 @@ class Kalte < ApplicationRecord
   validates :note, presence: true, length: { maximum: 500 }
 
   belongs_to :customer
+  has_one_attached :image
 end

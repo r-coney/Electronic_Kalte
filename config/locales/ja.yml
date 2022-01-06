@@ -48,6 +48,7 @@ ja:
       kalte: 
         menu: メニュー
         request: 要望
+        image: 画像
         menu_description: 施術内容
         note: メモ
         created_at: 来店日

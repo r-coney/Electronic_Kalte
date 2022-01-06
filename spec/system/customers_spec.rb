@@ -2,14 +2,30 @@ require 'rails_helper'
 
 describe '顧客管理機能', type: :system do
   let!(:test_user) { FactoryBot.create(:user) }
-  let!(:customer) { FactoryBot.create(:customer) }
+  let!(:test_customer) { FactoryBot.create(:customer) }
   before { sign_in(test_user) }
-  describe '一覧表示機能' do
+  describe "一覧表示機能" do
+    before { visit customers_path }
     it '登録された顧客が表示される' do
-      visit customers_path
-      expect(page).to have_content customer.name
-      expect(page).to have_content customer.id
-      expect(page).to have_content customer.phone
+      expect(page).to have_content test_customer.name
+      expect(page).to have_content test_customer.id
+      expect(page).to have_content test_customer.phone
+    end
+
+    it "氏名から顧客を検索する" do
+      fill_in "氏名", with: test_customer.name
+      click_button "検索"
+      expect(page).to have_content test_customer.name
+      expect(page).to have_content test_customer.id
+      expect(page).to have_content test_customer.phone
+    end
+
+    it "電話番号から顧客を検索する" do
+      fill_in "電話番号", with: test_customer.phone
+      click_button "検索"
+      expect(page).to have_content test_customer.name
+      expect(page).to have_content test_customer.id
+      expect(page).to have_content test_customer.phone
     end
   end
 
@@ -43,18 +59,18 @@ describe '顧客管理機能', type: :system do
 
   describe '顧客詳細表示機能' do 
     it '顧客詳細情報が表示される' do
-      visit customer_path(customer)
-      expect(page).to have_content customer.name
-      expect(page).to have_content customer.phone
-      expect(page).to have_content customer.birthday
-      expect(page).to have_content customer.gender_i18n
+      visit customer_path(test_customer)
+      expect(page).to have_content test_customer.name
+      expect(page).to have_content test_customer.phone
+      expect(page).to have_content test_customer.birthday
+      expect(page).to have_content test_customer.gender_i18n
     end
   end
 
   describe '顧客情報編集機能' do
     before do 
-      visit edit_customer_path(customer) 
-      fill_in '氏名', with: customer_name
+      visit edit_customer_path(test_customer) 
+      fill_in '氏名', with: test_customer_name
       fill_in '生年月日', with: '002021-12-17'
       fill_in '住所', with: '滋賀県大津市'
       fill_in '電話番号', with: '09000000000'
@@ -62,7 +78,7 @@ describe '顧客管理機能', type: :system do
       click_button '更新する'
     end
     context '有効な情報の場合' do
-      let(:customer_name) { '顧客情報編集のテスト顧客' }
+      let(:test_customer_name) { '顧客情報編集のテスト顧客' }
       it '顧客情報の更新に成功する' do
         expect(page).to have_selector '.alert-success', text: "顧客情報を更新しました"
         expect(page).to have_content '顧客情報編集のテスト顧客'
@@ -70,7 +86,7 @@ describe '顧客管理機能', type: :system do
     end
 
     context '無効な情報の場合' do
-      let(:customer_name) { ' ' }
+      let(:test_customer_name) { ' ' }
       it '顧客情報の更新に失敗し、顧客情報編集画面にもどる' do
         within '#error_explanation' do
           expect(page).to have_content '氏名を入力してください'
