@@ -11,6 +11,16 @@ class User < ApplicationRecord
 
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  scope :recent, -> { order(created_at: :desc) }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name phone]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
   private
     def downcase_email
       email.downcase!

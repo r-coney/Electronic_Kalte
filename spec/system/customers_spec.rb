@@ -5,6 +5,7 @@ describe '顧客管理機能', type: :system do
   let!(:test_customer) { FactoryBot.create(:customer) }
   before { sign_in(test_user) }
   describe "一覧表示機能" do
+    let!(:test_customer2) { FactoryBot.create(:customer, phone: "02000000000") }
     before { visit customers_path }
     it '登録された顧客が表示される' do
       expect(page).to have_content test_customer.name
@@ -12,20 +13,20 @@ describe '顧客管理機能', type: :system do
       expect(page).to have_content test_customer.phone
     end
 
-    it "氏名から顧客を検索する" do
+    it "氏名から検索した顧客以外は表示されていない" do
       fill_in "氏名", with: test_customer.name
       click_button "検索"
-      expect(page).to have_content test_customer.name
-      expect(page).to have_content test_customer.id
-      expect(page).to have_content test_customer.phone
+      expect(page).to_not have_content test_customer2.name
+      expect(page).to_not have_content test_customer2.id
+      expect(page).to_not have_content test_customer2.phone
     end
 
-    it "電話番号から顧客を検索する" do
+    it "電話番号から検索した顧客以外は表示されていない" do
       fill_in "電話番号", with: test_customer.phone
       click_button "検索"
-      expect(page).to have_content test_customer.name
-      expect(page).to have_content test_customer.id
-      expect(page).to have_content test_customer.phone
+      expect(page).to_not have_content test_customer2.name
+      expect(page).to_not have_content test_customer2.id
+      expect(page).to_not have_content test_customer2.phone
     end
   end
 

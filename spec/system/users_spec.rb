@@ -4,6 +4,7 @@ RSpec.describe "Users", type: :system do
   describe "ユーザー管理機能" do
     let!(:test_user) { FactoryBot.create(:user) }
     describe "一覧表示機能" do
+      let!(:test_user2) { FactoryBot.create(:user, phone: "02000000000") }
       before do
         sign_in(test_user)
         visit users_path
@@ -12,6 +13,22 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content test_user.name
         expect(page).to have_content test_user.phone
         expect(page).to have_content test_user.email
+      end
+
+      it "氏名から検索したスタッフ以外は表示されていない" do
+        fill_in "氏名", with: test_user.name
+        click_button "検索"
+        expect(page).to_not have_content test_user2.name
+        expect(page).to_not have_content test_user2.phone
+        expect(page).to_not have_content test_user2.email
+      end
+
+      it "電話番号から検索したスタッフ以外は表示されていない" do
+        fill_in "電話番号", with: test_user.phone
+        click_button "検索"
+        expect(page).to_not have_content test_user2.name
+        expect(page).to_not have_content test_user2.phone
+        expect(page).to_not have_content test_user2.email
       end
     end
 

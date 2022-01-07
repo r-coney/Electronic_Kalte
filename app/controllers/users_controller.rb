@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_admin, except: :show
   def index
-    @users = User.all.order(created_at: :desc)
+    users = User.all
+    @q = users.ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page])
   end
 
   def new

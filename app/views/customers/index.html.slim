@@ -1,6 +1,7 @@
 h1.page-title 顧客一覧
 
-=search_form_for @q, class: 'md-5' do |f|
+/ 検索フォーム
+= search_form_for @q, class: 'md-5' do |f|
   .form-group.row
     = f.label :name_cont, '氏名', class: 'col-sm-2 col-form-label'
   .col-sm-10
@@ -14,11 +15,15 @@ h1.page-title 顧客一覧
 
 = link_to '顧客登録', new_customer_path 
 
+.md-3
+  = paginate @customers
+  / = page_entries_info @customers
+
 table.table
   thead 
     tr 
       th scope='col' = Customer.human_attribute_name(:id)
-      th scope='col' = Customer.human_attribute_name(:name)
+      th = sort_link(@q, :name)
       th scope='col' =  Customer.human_attribute_name(:phone)
   tbody 
     - @customers.each do |customer|

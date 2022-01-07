@@ -3,8 +3,9 @@ before_action :set_customer, only: [:show, :edit, :update]
 
   def index
     customers = Customer.all
+    # gem'ransack'で検索可能にしている
     @q = customers.ransack(params[:q])
-    @customers = @q.result(distinct: true).recent
+    @customers = @q.result(distinct: true).page(params[:page])
   end
 
   def new
