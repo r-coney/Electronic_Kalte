@@ -7,7 +7,7 @@ table.table
       th scope='col' = Kalte.human_attribute_name(:menu) 
   tbody 
     tr
-      td = @kalte.created_at
+      td = @kalte.created_at.strftime('%Y/%m/%d')
       td = @kalte.menu
 
 table.table 

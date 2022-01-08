@@ -12,7 +12,6 @@ RSpec.describe "Users", type: :system do
       it "登録されたスタッフが表示される" do
         expect(page).to have_content test_user.name
         expect(page).to have_content test_user.phone
-        expect(page).to have_content test_user.email
       end
 
       it "氏名から検索したスタッフ以外は表示されていない" do

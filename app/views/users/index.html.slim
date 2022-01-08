@@ -14,26 +14,22 @@ h1.page-title スタッフ一覧
 
 = link_to '新規登録',  new_user_path, class: 'btn btn-primary'
 
-= paginate @users
+= paginate @users, theme: 'bootstrap-5'
 
 table.table
   thead
     tr 
       th = sort_link(@q, :name)
       th = User.human_attribute_name(:phone)
-      th = User.human_attribute_name(:email)
-      th = User.human_attribute_name(:admin)
       th = User.human_attribute_name(:created_at)
-      th = User.human_attribute_name(:updated_at)
     th
   tbody 
     - @users.each do |user|
       tr 
         td= link_to user.name, user
         td= user.phone
-        td= user.email 
-        td= user.admin? ? 'あり' : 'なし'
-        td= user.created_at 
-        td= user.updated_at 
+        td= user.created_at.strftime('%Y/%m/%d')
+
+= paginate @users, theme: 'bootstrap-5'
         
          

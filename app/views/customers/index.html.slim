@@ -16,7 +16,7 @@ h1.page-title 顧客一覧
 = link_to '顧客登録', new_customer_path 
 
 .md-3
-  = paginate @customers
+  = paginate @customers, theme: 'bootstrap-5'
   / = page_entries_info @customers
 
 table.table
@@ -31,3 +31,5 @@ table.table
         td= customer.id 
         td= link_to customer.name, customer
         td= customer.phone
+
+= paginate @customers, theme: 'bootstrap-5'
