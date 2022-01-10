@@ -1,35 +1,35 @@
-h1.page-title 顧客一覧
+#customer-index
+  h1.page-title 顧客一覧
 
-/ 検索フォーム
-= search_form_for @q, class: 'md-5' do |f|
-  .form-group.row
-    = f.label :name_cont, '氏名', class: 'col-sm-2 col-form-label'
-  .col-sm-10
-    = f.search_field :name_cont, class: 'form-control'
-  .form-group.row 
-    = f.label :phone_cont, '電話番号', class: 'col-sm-2 col-form-label'
-  .col-sm-10 
-    = f.search_field :phone_cont, class: 'form-control'
-  .form-group 
-    = f.submit class: 'btn btn-outline-primary'
+  / 検索フォーム
+  = search_form_for @q, class: 'md-5' do |f|
+    .row
+      .col-md-5
+        .form-group
+          = f.label :name_cont, '氏名', class: 'col-sm-2 col-form-label'
+          = f.search_field :name_cont, class: 'form-control'
+      .col-md-5 
+        .form-group
+          = f.label :phone_cont, '電話番号', class: 'col-sm-3 col-form-label'
+          = f.search_field :phone_cont, class: 'form-control'
+      .col-md-2 
+        .form-group 
+          = f.submit class: 'btn btn-outline-primary'
 
-= link_to '顧客登録', new_customer_path 
+  .md-3
+    = paginate @customers, theme: 'bootstrap-5'
 
-.md-3
+  table.table.table-striped.table-hover
+    thead.table-dark
+      tr 
+        th scope='col' = Customer.human_attribute_name(:id)
+        th scope="col" = Customer.human_attribute_name(:name)
+        th scope='col' =  Customer.human_attribute_name(:phone)
+    tbody 
+      - @customers.each do |customer|
+        tr
+          td= customer.id 
+          td= link_to customer.name, customer
+          td= customer.phone
+
   = paginate @customers, theme: 'bootstrap-5'
-  / = page_entries_info @customers
-
-table.table
-  thead 
-    tr 
-      th scope='col' = Customer.human_attribute_name(:id)
-      th = sort_link(@q, :name)
-      th scope='col' =  Customer.human_attribute_name(:phone)
-  tbody 
-    - @customers.each do |customer|
-      tr
-        td= customer.id 
-        td= link_to customer.name, customer
-        td= customer.phone
-
-= paginate @customers, theme: 'bootstrap-5'
