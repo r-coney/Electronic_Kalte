@@ -58,6 +58,17 @@ li {
   margin-bottom: 2rem;
 }
 
+/*顧客詳細ページ
+---------------------------------------- */
+#customer_show .btn {
+  margin: 0;
+  margin-right: 1rem;
+}
+
+#customer_show .link {
+  text-align: left;
+}
+
 /* モバイル版
 ------------------------------------------ */
 @media (max-width: 600px) {

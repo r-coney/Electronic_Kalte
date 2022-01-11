@@ -63,7 +63,7 @@ describe '顧客管理機能', type: :system do
       visit customer_path(test_customer)
       expect(page).to have_content test_customer.name
       expect(page).to have_content test_customer.phone
-      expect(page).to have_content test_customer.birthday
+      expect(page).to have_content test_customer.birthday.strftime('%Y/%m/%d')
       expect(page).to have_content test_customer.gender_i18n
     end
   end

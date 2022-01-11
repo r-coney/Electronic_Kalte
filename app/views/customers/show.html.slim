@@ -1,38 +1,38 @@
-h1.page-title 顧客詳細
+#customer_show
+  h1.page-title 顧客詳細
+  .float-end
+    = link_to '顧客一覧', customers_path
 
-= link_to '顧客一覧', customers_path
-
-table.table
-  tr 
-    th scope='col' = Customer.human_attribute_name(:id) 
-    td = @customer.id
-  tr
-    th scope='col' = Customer.human_attribute_name(:name)
-    td = @customer.name
-  tr 
-    th scope='col' = Customer.human_attribute_name(:phone)
-    td = @customer.phone
-  tr
-    th scope='col' = Customer.human_attribute_name(:birthday)
-    td = @customer.birthday
-  tr 
-    th scope='col' = Customer.human_attribute_name(:gender)
-    td = @customer.gender_i18n
-
-= link_to '編集',  edit_customer_path, class: 'btn btn-primary'
-
-table.table 
-  thead
+  table.table
     tr 
-      th scope='col' = Kalte.human_attribute_name(:created_at)
-      th scope='col' = Kalte.human_attribute_name(:menu)
-  tbody 
-    - @kaltes.each do |kalte|
-      tr
-        td = kalte.created_at.strftime('%Y/%m/%d')
-        td = link_to kalte.menu, customer_kalte_path(kalte.customer_id, kalte.id)
-        td 
-          = link_to '編集', edit_customer_kalte_path(kalte.customer_id, kalte.id), class: 'btn btn-primary'
-          = link_to '削除', customer_kalte_path(kalte.customer.id, kalte.id), method: :delete, data: { confirm: "カルテを削除します。よろしいですか？" }, class: 'btn btn-danger'
+      th scope='col' = Customer.human_attribute_name(:id) 
+      td = @customer.id
+    tr
+      th scope='col' = Customer.human_attribute_name(:name)
+      td = @customer.name
+    tr 
+      th scope='col' = Customer.human_attribute_name(:phone)
+      td = @customer.phone
+    tr
+      th scope='col' = Customer.human_attribute_name(:birthday)
+      td = @customer.birthday.strftime('%Y/%m/%d')
+    tr 
+      th scope='col' = Customer.human_attribute_name(:gender)
+      td = @customer.gender_i18n
 
-= link_to 'カルテ作成', new_customer_kalte_path(@customer), class: 'btn btn-primary'
+  = link_to '編集',  edit_customer_path, class: 'btn btn-primary'
+  = link_to 'カルテ作成', new_customer_kalte_path(@customer), class: 'btn btn-primary'
+
+  table.table 
+    thead
+      tr 
+        th scope='col' = Kalte.human_attribute_name(:created_at)
+        th scope='col' = Kalte.human_attribute_name(:menu)
+    tbody 
+      - @kaltes.each do |kalte|
+        tr
+          td = kalte.created_at.strftime('%Y/%m/%d')
+          td = link_to kalte.menu, customer_kalte_path(kalte.customer_id, kalte.id)
+          td 
+            = link_to '編集', edit_customer_kalte_path(kalte.customer_id, kalte.id), class: 'btn btn-primary'
+            = link_to '削除', customer_kalte_path(kalte.customer.id, kalte.id), method: :delete, data: { confirm: "カルテを削除します。よろしいですか？" }, class: 'btn btn-danger'
