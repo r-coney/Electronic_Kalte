@@ -1,47 +1,54 @@
-h1.page-title カルテ詳細
+#kalte-show
+  h1.page-title カルテ詳細
 
-table.table 
-  thead
-    tr 
-      th scope='col' = Kalte.human_attribute_name(:created_at) 
-      th scope='col' = Kalte.human_attribute_name(:menu) 
-  tbody 
-    tr
-      td = @kalte.created_at.strftime('%Y/%m/%d')
-      td = @kalte.menu
+  .row
+    .col-md-5
+      table.table.kalte-table
+        tr 
+          th scope='col' = Kalte.human_attribute_name(:created_at) 
+          td = @kalte.created_at.strftime('%Y/%m/%d')
+    .col-md-5
+      table.table.kalte-table
+        tr
+          th scope='col' = Kalte.human_attribute_name(:menu) 
+          td = @kalte.menu
 
-table.table 
-  thead
-    tr 
-      th scope='col' = Kalte.human_attribute_name(:request)
-  tbody 
-    tr 
-      td = @kalte.request
+  .row
+    .col-md-8
+      table.table.kalte-table
+        thead
+          tr 
+            th scope='col' = Kalte.human_attribute_name(:request)
+        tbody 
+          tr 
+            td = @kalte.request
+    .col-md-4
+      table.table.kalte-table
+        thead
+          tr 
+            th scope='col' = Kalte.human_attribute_name(:image)
+        tbody 
+          tr 
+            td = image_tag @kalte.image if @kalte.image.attached? 
 
-table.table 
-  thead
-    tr 
-      th scope='col' = Kalte.human_attribute_name(:image)
-  tbody 
-    tr 
-      td = image_tag @kalte.image if @kalte.image.attached? 
+  table.table.kalte-table
+    thead 
+      tr 
+        th scope='col' = Kalte.human_attribute_name(:menu_description)
+    tbody 
+      tr 
+        td = @kalte.menu_description
 
-table.table 
-  thead 
-    tr 
-      th scope='col' = Kalte.human_attribute_name(:menu_description)
-  tbody 
-    tr 
-      td = @kalte.menu_description
+  table.table.kalte-table
+    thead 
+      tr 
+        th scope='col' = Kalte.human_attribute_name(:note)
+    tbody 
+      tr 
+        td = @kalte.note
 
-table.table 
-  thead 
-    tr 
-      th scope='col' = Kalte.human_attribute_name(:note)
-  tbody 
-    tr 
-      td = @kalte.note
+  .float-end
+    = link_to '編集', edit_customer_kalte_path(@kalte), class: 'btn btn-primary'
 
-= link_to '編集', edit_customer_kalte_path(@kalte), class: 'btn btn-primary'
-= link_to '削除', customer_kalte_path(@kalte.customer.id, @kalte.id), method: :delete, data: { confirm: "カルテを削除します。よろしいですか？" }, class: 'btn btn-danger'
+    = link_to '削除', customer_kalte_path(@kalte.customer.id, @kalte.id), method: :delete, data: { confirm: "カルテを削除します。よろしいですか？" }, class: 'btn btn-danger'
 

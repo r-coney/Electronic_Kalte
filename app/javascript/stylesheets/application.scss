@@ -54,10 +54,15 @@ li {
 
 /*顧客一覧ページ
 ---------------------------------------- */
-#customer-index .page-title {
-  margin-bottom: 2rem;
+#customer-index {
+  .page-title {
+    margin-bottom: 2rem;
+  }
+  .btn {
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
 }
-
 /*顧客詳細ページ
 ---------------------------------------- */
 #customer_show .btn {
@@ -72,6 +77,37 @@ li {
 ---------------------------------------- */
 .kalte-form {
   height: 10rem;
+}
+
+/*カルテ詳細ページ
+---------------------------------------- */
+#kalte-show  {
+  .page-title {
+    margin-bottom: 2rem;
+  }
+  .btn {
+    margin: 1rem;
+  }
+}
+.kalte-table {
+  margin-bottom: 4rem;
+}
+
+/*スタッフ一覧ページ
+---------------------------------------- */
+#users-index {
+  .page-title {
+    margin-bottom: 2rem;
+  }
+  .btn {
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
+  .link {
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 
@@ -90,4 +126,30 @@ li {
   .page-title {
     margin-top: 2rem;
   }
+
+  /* 顧客一覧ページ
+   ---------------------------------------- */
+   #customer-index {
+     .btn {
+       margin-top: 1rem;
+       margin-bottom: 1rem;
+     }
+   }
+
+  /* カルテ詳細ページ
+   ---------------------------------------- */
+   .kalte-table {
+     margin-bottom: 2rem;
+   }
+
+     /* スタッフ一覧ページ
+   ---------------------------------------- */
+   #users-index {
+     .btn {
+       margin-top: 1rem;
+       margin-bottom: 1rem;
+     }
+   }
 }
+
+
