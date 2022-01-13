@@ -1,27 +1,37 @@
-h1.page-title スタッフ詳細
+#users-show
+  h1.page-title スタッフ詳細
 
-table.table
-  tr 
-    th scope="col" = User.human_attribute_name(:name)
-    td = @user.name
-  tr 
-    th scope="col" = User.human_attribute_name(:phone)
-    td = @user.phone 
-  tr 
-    th scope="col" = User.human_attribute_name(:email)
-    td = @user.email 
+  .float-end
+    - if current_user.admin?
+      == link_to  "スタッフ一覧", users_path, class: "link"
 
-  tr  
-    th scope="col" = User.human_attribute_name(:admin)
-    td = @user.admin? ? 'あり' : 'なし'
-  tr 
-    th scope="col" = User.human_attribute_name(:created_at)
-    td = @user.created_at.strftime('%Y/%m/%d')
-  tr 
-    th scope="col" = User.human_attribute_name(:updated_at)
-    td = @user.updated_at.strftime('%Y/%m/%d')
+  table.table
+    tr 
+      th scope="col" = User.human_attribute_name(:name)
+      td = @user.name
+    tr 
+      th scope="col" = User.human_attribute_name(:phone)
+      td = @user.phone 
+    tr 
+      th scope="col" = User.human_attribute_name(:email)
+      td = @user.email 
+
+    tr  
+      th scope="col" = User.human_attribute_name(:admin)
+      td = @user.admin? ? 'あり' : 'なし'
+    tr 
+      th scope="col" = User.human_attribute_name(:created_at)
+      td = @user.created_at.strftime('%Y/%m/%d')
+    tr 
+      th scope="col" = User.human_attribute_name(:updated_at)
+      td = @user.updated_at.strftime('%Y/%m/%d')
+    
+  =link_to "顧客一覧", customers_path, class: "link"
   
-= link_to "編集", edit_user_path(@user)
-= link_to "削除", user_path(@user), method: :delete, data: { confirm: "#{@user.name}を削除します。よろしいですか？" }, class: 'btn btn-danger'
-- if @user == current_user
-  = link_to "ログアウト", logout_path, method: :delete, class: "btn btn-info"
+  .float-end
+    = link_to "編集", edit_user_path(@user), class: "btn btn-primary"
+
+    = link_to "削除", user_path(@user), method: :delete, data: { confirm: "#{@user.name}を削除します。よろしいですか？" }, class: 'btn btn-danger'
+
+    - if @user == current_user
+      = link_to "ログアウト", logout_path, method: :delete, class: "btn btn-secondary"

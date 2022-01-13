@@ -1,5 +1,6 @@
 h1.page-title 顧客登録
 
-= render partial: 'form', locals: { customer: @customer }
+.float-end
+  = link_to '顧客一覧', customers_path, class: "link"
 
-= link_to '顧客一覧', customers_path
+= render partial: 'form', locals: { customer: @customer }

@@ -1,6 +1,9 @@
 #users-index
   h1.page-title スタッフ一覧
 
+  .float-end
+    = link_to '新規登録',  new_user_path, class: "link"
+
   / 検索フォーム
   = search_form_for @q, class: 'md-5' do |f|
     .row
@@ -10,13 +13,12 @@
           = f.search_field :name_cont, class: 'form-control'
       .col-md-5
         .form-group.
-          = f.label :phone_cont, '電話番号', class: 'col-sm-3 col-form-label'
+          = f.label :phone_cont, '電話番号', class: 'col-sm-4 col-form-label'
           = f.search_field :phone_cont, class: 'form-control'
       .col-md-2
         .form-group 
           = f.submit class: 'btn btn-outline-primary'
 
-    = link_to '新規登録',  new_user_path, class: "link"
 
   .md-3
     = paginate @users, theme: 'bootstrap-5'

@@ -24,6 +24,7 @@ h1 {
   font-weight:400;
   text-align: center;
   margin-top: 4rem;
+  margin-bottom: 3rem;
 }
 li {
   list-style: none;
@@ -31,6 +32,12 @@ li {
 .btn {
   font-size: 1.5rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.form {
+  margin-bottom: 1rem;
+}
+.link {
   margin-bottom: 1rem;
 }
 
@@ -55,9 +62,6 @@ li {
 /*顧客一覧ページ
 ---------------------------------------- */
 #customer-index {
-  .page-title {
-    margin-bottom: 2rem;
-  }
   .btn {
     margin-top: 3rem;
     margin-bottom: 0;
@@ -82,9 +86,6 @@ li {
 /*カルテ詳細ページ
 ---------------------------------------- */
 #kalte-show  {
-  .page-title {
-    margin-bottom: 2rem;
-  }
   .btn {
     margin: 1rem;
   }
@@ -96,9 +97,6 @@ li {
 /*スタッフ一覧ページ
 ---------------------------------------- */
 #users-index {
-  .page-title {
-    margin-bottom: 2rem;
-  }
   .btn {
     margin-top: 3rem;
     margin-bottom: 0;
@@ -109,6 +107,18 @@ li {
     margin-bottom: 0.5rem;
   }
 }
+
+/*スタッフ詳細ページ
+---------------------------------------- */
+#users-show {
+  .page-title {
+    margin-bottom: 4rem;
+  }
+  .btn {
+    margin: 1rem;
+  }
+}
+
 
 
 /* モバイル版
