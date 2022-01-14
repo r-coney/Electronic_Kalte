@@ -52,12 +52,15 @@ li {
 
 /*ログインページ
 ---------------------------------------- */
-#login .page-title {
-  margin-bottom: 4rem;
-} 
-.login-btn {
-  text-align: center;
+#login {
+  .page-title {
+    margin-bottom: 4rem;
+  } 
+  .login-btn {
+    text-align: center;
+  }
 }
+  
 
 /*顧客一覧ページ
 ---------------------------------------- */

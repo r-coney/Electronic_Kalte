@@ -22,6 +22,21 @@
         tbody 
           tr 
             td = @kalte.request
+      table.table.kalte-table
+        thead 
+          tr 
+            th scope='col' = Kalte.human_attribute_name(:menu_description)
+        tbody 
+          tr 
+            td = @kalte.menu_description
+      table.table.kalte-table
+        thead 
+          tr 
+            th scope='col' = Kalte.human_attribute_name(:note)
+        tbody 
+          tr 
+            td = @kalte.note
+
     .col-md-4
       table.table.kalte-table
         thead
@@ -30,22 +45,8 @@
         tbody 
           tr 
             td = image_tag @kalte.image if @kalte.image.attached? 
+  
 
-  table.table.kalte-table
-    thead 
-      tr 
-        th scope='col' = Kalte.human_attribute_name(:menu_description)
-    tbody 
-      tr 
-        td = @kalte.menu_description
-
-  table.table.kalte-table
-    thead 
-      tr 
-        th scope='col' = Kalte.human_attribute_name(:note)
-    tbody 
-      tr 
-        td = @kalte.note
 
   .float-end
     = link_to '編集', edit_customer_kalte_path(@kalte), class: 'btn btn-primary'
