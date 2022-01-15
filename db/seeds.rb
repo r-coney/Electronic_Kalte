@@ -7,6 +7,15 @@ User.create!(
   password_confirmation: "password"
 )
 
+User.create!(
+  name: "user",
+  phone: "02000000000",
+  email: "user@example.com",
+  admin: false,
+  password: "password",
+  password_confirmation: "password"
+)
+
 50.times do |n|
   User.create!(
     name: "サンプルスタッフ#{n + 1}",

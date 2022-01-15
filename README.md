@@ -1,5 +1,7 @@
 # Electronic_kalte
 
+<img width="1133" alt="スクリーンショット 2022-01-15 21 15 24" src="https://user-images.githubusercontent.com/88442625/149621488-fc2d7779-596d-46ad-8997-c6ef76f8d205.png">
+
 https://electronic-kalte.herokuapp.com/
 
 美容師の経験から作成したカルテをデータで管理できるアプリケーションです。
